@@ -42,6 +42,23 @@ exports.updateFixedExtension = (req, res) => {
 
 //커스텀 확장자 추가
 exports.updateCustomExtension = (req, res) => {
+  CustomExtension.findAll({
+    where: {
+      extension_name: req.body.extension_name,
+    },
+  })
+    .then((already) => {
+      if (already.length > 0) {
+        return res.status(403).send({
+          resultCode: '2000',
+          resultMsg: 'Extension Name is already Existed',
+        })
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message })
+    })
+
   CustomExtension.create({
     extension_name: req.body.extension_name,
   })
