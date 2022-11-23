@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>파일 확장자 차단</h1>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <table>
+
+        <thead>
+            <tr align="center" bgcolor="white">
+                <td>고정확장자</td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="bat">
+                        <label class="form-check-label" for="inlineCheckbox1">bat</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="cmd">
+                        <label class="form-check-label" for="inlineCheckbox2">cmd</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="com">
+                        <label class="form-check-label" for="inlineCheckbox2">com</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="cpl">
+                        <label class="form-check-label" for="inlineCheckbox2">cpl</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="exe">
+                        <label class="form-check-label" for="inlineCheckbox2">exe</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="scr">
+                        <label class="form-check-label" for="inlineCheckbox2">scr</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="js">
+                        <label class="form-check-label" for="inlineCheckbox2">js</label>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr align="center" bgcolor="white">
+                <td>커스텀 확장자</td>
+                <td>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Custom Extension"
+                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">+추가</button>
+                    </div>
+                </td>
+            </tr>
+            <tr align="center" bgcolor="white">
+                <td></td>
+                <td>
+                    <div
+                        style="padding: 2em 2em; margin: 2em 0; font-weight: bold; color: #000000; background: #FFF; border: solid 3px #000000; border-radius: 10px;">
+                        <p>sh</p>
+                        <p>ch</p>
+                        <p>ju</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

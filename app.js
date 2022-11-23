@@ -20,6 +20,11 @@ app.get('/', (req, res) => {
   res.send('Root')
 })
 
+app.get('/view', (req, res) => {
+  console.log('__dirname', __dirname)
+  res.sendFile(__dirname + '/public/blockExtension.html')
+})
+
 app.listen(port, () => {
   console.log(port, '포트로 서버 연결!')
 })

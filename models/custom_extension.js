@@ -1,8 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
-  const extension = sequelize.define(
-    'extension',
+  const custom_extension = sequelize.define(
+    'custom_extension',
     {
-      //확장자 이름
+      //커스텀확장자 이름
       extension_name: {
         type: Sequelize.STRING(20),
       },
@@ -12,5 +12,5 @@ module.exports = (sequelize, Sequelize) => {
       freezeTableName: true,
     }
   )
-  return extension
+  return custom_extension
 }
