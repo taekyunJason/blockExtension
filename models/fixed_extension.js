@@ -2,13 +2,40 @@ module.exports = (sequelize, Sequelize) => {
   const fixed_extension = sequelize.define(
     'fixed_extension',
     {
-      //고정확장자 이름
-      extension_name: {
-        type: Sequelize.STRING(10),
-      },
-      //고정확장자 체크 유무
-      is_checked: {
+      //고정확장자(bat) 상태값
+      bat: {
         type: Sequelize.CHAR(1),
+        defaultValue: 'N',
+      },
+      //고정확장자(cmd) 상태값
+      bat: {
+        type: Sequelize.CHAR(1),
+        defaultValue: 'N',
+      },
+      //고정확장자(com) 상태값
+      bat: {
+        type: Sequelize.CHAR(1),
+        defaultValue: 'N',
+      },
+      //고정확장자(cpl) 상태값
+      bat: {
+        type: Sequelize.CHAR(1),
+        defaultValue: 'N',
+      },
+      //고정확장자(exe) 상태값
+      bat: {
+        type: Sequelize.CHAR(1),
+        defaultValue: 'N',
+      },
+      //고정확장자(scr) 상태값
+      bat: {
+        type: Sequelize.CHAR(1),
+        defaultValue: 'N',
+      },
+      //고정확장자(js) 상태값
+      bat: {
+        type: Sequelize.CHAR(1),
+        defaultValue: 'N',
       },
     },
     {
