@@ -60,7 +60,7 @@ exports.updateFixedExtension = (req, res) => {
 exports.updateCustomExtension = (req, res) => {
   CustomExtension.findAll({
     where: {
-      extension_name: req.body.extension_name,
+      extensionName: req.query.extensionName,
     },
   })
     .then((already) => {
@@ -76,7 +76,7 @@ exports.updateCustomExtension = (req, res) => {
     })
 
   CustomExtension.create({
-    extension_name: req.body.extension_name,
+    extensionName: req.query.extensionName,
   })
     .then(() => {
       return res.status(201).send({ resultCode: '0000' })
