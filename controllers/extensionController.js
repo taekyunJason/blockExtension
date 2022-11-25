@@ -5,6 +5,7 @@ const FixedExtension = db.fixed_extension
 
 //고정 확장자 상태 조회
 exports.checkFixedExtension = (req, res) => {
+  let tempFixedExtensionArr = []
   FixedExtension.findAll({
     where: {
       index: 1,
@@ -16,7 +17,15 @@ exports.checkFixedExtension = (req, res) => {
           .status(400)
           .send({ resultCode: '1000', resultMsg: 'Invalid Data' })
       } else {
-        return res.status(200).send({ resultCode: '0000', resultData: result })
+        console.log('this is result =>', result)
+        if (result.length > 0) {
+          result.forEach((element) => {
+            tempFixedExtensionArr.push(element)
+          })
+        }
+        return res
+          .status(200)
+          .send({ resultCode: '0000', resultData: tempFixedExtensionArr })
       }
     })
     .catch((err) => {

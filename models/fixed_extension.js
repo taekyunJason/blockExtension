@@ -24,6 +24,8 @@ module.exports = (sequelize, DataTypes) => {
       exe: { type: DataTypes.STRING, defaultValue: 'N' },
       scr: { type: DataTypes.STRING, defaultValue: 'N' },
       js: { type: DataTypes.STRING, defaultValue: 'N' },
+      createdAt: { type: DataTypes.DATE, allowNull: false },
+      updatedAt: { type: DataTypes.DATE, allowNull: false },
     },
     {
       sequelize,
