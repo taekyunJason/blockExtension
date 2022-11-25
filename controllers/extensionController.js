@@ -69,20 +69,20 @@ exports.updateCustomExtension = (req, res) => {
           resultCode: '2000',
           resultMsg: 'Extension Name is already Existed',
         })
+      } else {
+        CustomExtension.create({
+          extensionName: req.query.extensionName,
+        })
+          .then(() => {
+            return res.status(201).send({ resultCode: '0000' })
+          })
+          .catch((err) => {
+            return res.status(500).send({ message: err.message })
+          })
       }
     })
     .catch((err) => {
       res.status(500).send({ message: err.message })
-    })
-
-  CustomExtension.create({
-    extensionName: req.query.extensionName,
-  })
-    .then(() => {
-      return res.status(201).send({ resultCode: '0000' })
-    })
-    .catch((err) => {
-      return res.status(500).send({ message: err.message })
     })
 }
 
@@ -90,7 +90,7 @@ exports.updateCustomExtension = (req, res) => {
 exports.deleteCustomExtension = (req, res) => {
   CustomExtension.destroy({
     where: {
-      extension_name: req.body.extension_name,
+      extensionName: req.query.extensionName,
     },
   }).catch((err) => {
     return res.status(500).send({ message: err.message })
