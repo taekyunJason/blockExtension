@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) => {
     'custom_extension',
     {
       //커스텀확장자 이름
-      extension_name: {
+      extensionName: {
         type: Sequelize.STRING(20),
       },
     },

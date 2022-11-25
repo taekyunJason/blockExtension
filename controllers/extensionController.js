@@ -1,8 +1,7 @@
-const Sequelize = require('sequelize')
-
+// db 모듈
 const db = require('../models')
-const CustomExtension = ''
-const FixedExtension = ''
+const CustomExtension = db.custom_extension
+const FixedExtension = db.fixed_extension
 
 //고정 확장자 상태 조회
 exports.checkFixedExtension = (req, res) => {

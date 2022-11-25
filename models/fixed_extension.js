@@ -8,32 +8,32 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: 'N',
       },
       //고정확장자(cmd) 상태값
-      bat: {
+      cmd: {
         type: Sequelize.CHAR(1),
         defaultValue: 'N',
       },
       //고정확장자(com) 상태값
-      bat: {
+      com: {
         type: Sequelize.CHAR(1),
         defaultValue: 'N',
       },
       //고정확장자(cpl) 상태값
-      bat: {
+      cpl: {
         type: Sequelize.CHAR(1),
         defaultValue: 'N',
       },
       //고정확장자(exe) 상태값
-      bat: {
+      exe: {
         type: Sequelize.CHAR(1),
         defaultValue: 'N',
       },
       //고정확장자(scr) 상태값
-      bat: {
+      scr: {
         type: Sequelize.CHAR(1),
         defaultValue: 'N',
       },
       //고정확장자(js) 상태값
-      bat: {
+      js: {
         type: Sequelize.CHAR(1),
         defaultValue: 'N',
       },

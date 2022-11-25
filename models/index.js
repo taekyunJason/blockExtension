@@ -12,6 +12,7 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
-db.extension = require('./custom_extension')(sequelize, Sequelize)
+db.custom_extension = require('./custom_extension')(sequelize, Sequelize)
+db.fixed_extension = require('./fixed_extension')(sequelize, Sequelize)
 
 module.exports = db
