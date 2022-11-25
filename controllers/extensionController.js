@@ -18,7 +18,6 @@ exports.checkFixedExtension = (req, res) => {
           .status(400)
           .send({ resultCode: '1000', resultMsg: 'Invalid Data' })
       } else {
-        // console.log('this is result =>', result[0])
         if (result.length > 0) {
           tempArr = Object.values(result[0].dataValues)
           for (let i = 1; i <= 7; i++) {
@@ -37,15 +36,18 @@ exports.checkFixedExtension = (req, res) => {
 
 //고정 확장자 상태 업데이트
 exports.updateFixedExtension = (req, res) => {
-  FixedExtension.update({
-    bat: req.body.bat,
-    cmd: req.body.cmd,
-    com: req.body.com,
-    cpl: req.body.cpl,
-    exe: req.body.exe,
-    scr: req.body.scr,
-    js: req.body.js,
-  })
+  FixedExtension.update(
+    {
+      bat: req.query.bat,
+      cmd: req.query.cmd,
+      com: req.query.com,
+      cpl: req.query.cpl,
+      exe: req.query.exe,
+      scr: req.query.scr,
+      js: req.query.js,
+    },
+    { where: { index: 1 } }
+  )
     .then(() => {
       return res.status(201).send({ resultCode: '0000' })
     })
