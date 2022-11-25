@@ -1,46 +1,33 @@
-module.exports = (sequelize, Sequelize) => {
-  const fixed_extension = sequelize.define(
-    'fixed_extension',
+'use strict'
+const { Model } = require('sequelize')
+module.exports = (sequelize, DataTypes) => {
+  class fixed_extension extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  fixed_extension.init(
     {
-      //고정확장자(bat) 상태값
-      bat: {
-        type: Sequelize.CHAR(1),
-        defaultValue: 'N',
+      index: {
+        primaryKey: true,
+        type: DataTypes.INTEGER,
       },
-      //고정확장자(cmd) 상태값
-      cmd: {
-        type: Sequelize.CHAR(1),
-        defaultValue: 'N',
-      },
-      //고정확장자(com) 상태값
-      com: {
-        type: Sequelize.CHAR(1),
-        defaultValue: 'N',
-      },
-      //고정확장자(cpl) 상태값
-      cpl: {
-        type: Sequelize.CHAR(1),
-        defaultValue: 'N',
-      },
-      //고정확장자(exe) 상태값
-      exe: {
-        type: Sequelize.CHAR(1),
-        defaultValue: 'N',
-      },
-      //고정확장자(scr) 상태값
-      scr: {
-        type: Sequelize.CHAR(1),
-        defaultValue: 'N',
-      },
-      //고정확장자(js) 상태값
-      js: {
-        type: Sequelize.CHAR(1),
-        defaultValue: 'N',
-      },
+      bat: { type: DataTypes.STRING, defaultValue: 'N' },
+      cmd: { type: DataTypes.STRING, defaultValue: 'N' },
+      com: { type: DataTypes.STRING, defaultValue: 'N' },
+      cpl: { type: DataTypes.STRING, defaultValue: 'N' },
+      exe: { type: DataTypes.STRING, defaultValue: 'N' },
+      scr: { type: DataTypes.STRING, defaultValue: 'N' },
+      js: { type: DataTypes.STRING, defaultValue: 'N' },
     },
     {
-      //options
-      freezeTableName: true,
+      sequelize,
+      modelName: 'fixed_extension',
     }
   )
   return fixed_extension

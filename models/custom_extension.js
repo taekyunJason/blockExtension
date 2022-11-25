@@ -1,15 +1,27 @@
-module.exports = (sequelize, Sequelize) => {
-  const custom_extension = sequelize.define(
-    'custom_extension',
+'use strict'
+const { Model } = require('sequelize')
+module.exports = (sequelize, DataTypes) => {
+  class custom_extension extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  custom_extension.init(
     {
-      //커스텀확장자 이름
-      extensionName: {
-        type: Sequelize.STRING(20),
+      index: {
+        primaryKey: true,
+        type: DataTypes.INTEGER,
       },
+      extensionName: DataTypes.STRING,
     },
     {
-      //options
-      freezeTableName: true,
+      sequelize,
+      modelName: 'custom_extension',
     }
   )
   return custom_extension

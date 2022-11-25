@@ -5,7 +5,11 @@ const FixedExtension = db.fixed_extension
 
 //고정 확장자 상태 조회
 exports.checkFixedExtension = (req, res) => {
-  FixedExtension.findAll({})
+  FixedExtension.findAll({
+    where: {
+      index: 1,
+    },
+  })
     .then((result) => {
       if (!result) {
         return res
