@@ -64,21 +64,30 @@ exports.updateCustomExtension = (req, res) => {
     },
   })
     .then((already) => {
-      if (already.length > 0) {
-        return res.status(403).send({
+      // 입력받은 커스텀 확장자 글자수 검사
+      if (req.query.extensionName.length > 20) {
+        return res.status(404).send({
           resultCode: '2000',
-          resultMsg: 'Extension Name is already Existed',
+          resultMsg: 'Extension Name is longer than 20',
         })
       } else {
-        CustomExtension.create({
-          extensionName: req.query.extensionName,
-        })
-          .then(() => {
-            return res.status(201).send({ resultCode: '0000' })
+        // 기존 DB에 일치하는 커스텀 확장자가 있는지 검사
+        if (already.length > 0) {
+          return res.status(404).send({
+            resultCode: '2000',
+            resultMsg: 'Extension Name is already Existed',
           })
-          .catch((err) => {
-            return res.status(500).send({ message: err.message })
+        } else {
+          CustomExtension.create({
+            extensionName: req.query.extensionName,
           })
+            .then(() => {
+              return res.status(201).send({ resultCode: '0000' })
+            })
+            .catch((err) => {
+              return res.status(500).send({ message: err.message })
+            })
+        }
       }
     })
     .catch((err) => {

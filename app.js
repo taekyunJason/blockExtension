@@ -20,7 +20,8 @@ app.all('/*', (req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-  res.send('Root')
+  console.log('__dirname', __dirname)
+  res.sendFile(__dirname + '/public/blockExtension.html')
 })
 
 app.get('/view', (req, res) => {

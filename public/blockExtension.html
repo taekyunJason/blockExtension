@@ -3,50 +3,108 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+    <title>Block Extension</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 
+<script>
+    $(document).ready(function () {
+    });
+
+    function addExtension() {
+        //추가 버튼 이벤트
+        $("#firstButton").on("click", function () {
+            let customExtension = document.getElementById('customExtension').value;
+            if (customExtension === '' || null) {
+                alert('확장자를 입력해주세요.')
+                return
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '/extension/custom' + '?' + $.param({ "extensionName": customExtension }),
+                    data: {},
+                    success: function (result) {
+                        console.log(result)
+
+                        let bodyHtml = `<button id='secondButton' name='${customExtension}' >${customExtension} X</button>`;
+                        $("#result").append(bodyHtml);
+                        $('#customExtension').empty();
+                    }, error: function (error) {
+                        alert(error.responseJSON.errorMessage);
+                    },
+                })
+            }
+        });
+        //두 번째 버튼 이벤트
+        $(document).on("click", "#secondButton", function () {
+            let customExtension = document.getElementsByTagName('button');
+            console.log(customExtension)
+            $.ajax({
+                type: 'DELETE',
+                url: '/extension/custom' + '?' + $.param({ "extensionName": customExtension }),
+                data: {},
+                success: function (result) {
+                    console.log(result)
+
+                    $('button').remove()
+                }, error: function (error) {
+                    alert(error.responseJSON.errorMessage);
+                },
+            })
+            alert("선택한 확장자를 삭제했습니다.");
+        });
+
+    }
+</script>
+
 <body>
     <h1>파일 확장자 차단</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
-    <table>
 
+    <div id="mainDiv">
+        <!-- <button id="firstButton">첫 번째 버튼</button> -->
+    </div>
+
+    <table>
         <thead>
             <tr align="center" bgcolor="white">
                 <td>고정확장자</td>
                 <td>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" value="bat">
-                        <label class="form-check-label" for="inlineCheckbox1">bat</label>
+                        <label class="form-check-label" for="inlineCheckbox1"
+                            onclick="fixedExtensionCheck()">bat</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" value="cmd">
-                        <label class="form-check-label" for="inlineCheckbox2">cmd</label>
+                        <label class="form-check-label" for="inlineCheckbox2"
+                            onclick="fixedExtensionCheck()">cmd</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" value="com">
-                        <label class="form-check-label" for="inlineCheckbox2">com</label>
+                        <label class="form-check-label" for="inlineCheckbox2"
+                            onclick="fixedExtensionCheck()">com</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" value="cpl">
-                        <label class="form-check-label" for="inlineCheckbox2">cpl</label>
+                        <label class="form-check-label" for="inlineCheckbox2"
+                            onclick="fixedExtensionCheck()">cpl</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" value="exe">
-                        <label class="form-check-label" for="inlineCheckbox2">exe</label>
+                        <label class="form-check-label" for="inlineCheckbox2"
+                            onclick="fixedExtensionCheck()">exe</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" value="scr">
-                        <label class="form-check-label" for="inlineCheckbox2">scr</label>
+                        <label class="form-check-label" for="inlineCheckbox2"
+                            onclick="fixedExtensionCheck()">scr</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" value="js">
-                        <label class="form-check-label" for="inlineCheckbox2">js</label>
+                        <label class="form-check-label" for="inlineCheckbox2" onclick="fixedExtensionCheck()">js</label>
                     </div>
                 </td>
             </tr>
@@ -57,26 +115,24 @@
                 <td>커스텀 확장자</td>
                 <td>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Custom Extension"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">+추가</button>
+                        <input type="text" id="customExtension" class="form-control" placeholder="Custom Extension"
+                            aria-label="Recipient's username" aria-describedby="button-addon2" />
+                        <button class="btn btn-outline-secondary" type="button" id="firstButton"
+                            onclick="addExtension()">+추가</button>
                     </div>
                 </td>
             </tr>
             <tr align="center" bgcolor="white">
                 <td></td>
                 <td>
-                    <div
+                    <div id="result"
                         style="padding: 2em 2em; margin: 2em 0; font-weight: bold; color: #000000; background: #FFF; border: solid 3px #000000; border-radius: 10px;">
-                        <p>sh</p>
-                        <p>ch</p>
-                        <p>ju</p>
-
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
+
 </body>
 
 </html>
